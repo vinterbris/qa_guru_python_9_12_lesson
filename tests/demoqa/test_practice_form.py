@@ -45,6 +45,6 @@ def test_registration():
 
     # THEN
     browser.element('.table').all('td:last-child').should(
-        have.exact_texts('Sergey Dobrovolskiy', 'dobrovolskiy@qa.ru', 'Male', '1002003040', '02 January,2100',
+        have.exact_texts('Sergey Dobrovolskiy', 'dobrovolskiy@qa.ru', 'Male', '1002003040', '02 April,1900',
                          'Maths', 'Sports', 'nolan.jpg', 'Test Address', 'NCR Delhi'))
     browser.element('#closeLargeModal').perform(command.js.scroll_into_view).click()
