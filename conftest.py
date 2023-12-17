@@ -8,8 +8,8 @@ from utils import attach
 
 @pytest.fixture(scope='function', autouse=True)
 def setup_browser(request):
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
+    browser.config.window_width = 3960
+    browser.config.window_height = 2000
     browser.config.base_url = 'https://demoqa.com'
     options = Options()
     selenoid_capabilities = {
