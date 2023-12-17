@@ -11,6 +11,8 @@ RES_DIR = os.path.join(CURRENT_DIR, os.path.pardir, "resources")
 
 def test_registration():
     browser.open('/automation-practice-form')
+    browser.driver.execute_script("$('footer').remove()")
+    browser.driver.execute_script("$('#fixedban').remove()")
 
     # WHEN
     browser.element('#firstName').should(be.blank).with_(type_by_js=True).type('Sergey')
