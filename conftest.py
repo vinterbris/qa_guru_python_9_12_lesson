@@ -13,8 +13,8 @@ def setup_browser(request):
     browser.config.base_url = 'https://demoqa.com'
     options = Options()
     selenoid_capabilities = {
-        "browserName": "firefox",
-        "browserVersion": "98.0",
+        "browserName": "chrome",
+        "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
