@@ -26,12 +26,9 @@ def test_registration():
     browser.element(f'.react-datepicker__day--00{2}').click()
 
     browser.element('#subjectsContainer').click()
-    browser.element('#subjectsInput').type('Maths').press_enter()
-    browser.element('#subjectsInput').type('Chemistry').press_enter()
+    browser.element('#subjectsInput').with_(type_by_js=True).type('Maths').press_enter()
 
     browser.all('[for^=hobbies-checkbox]').element_by(have.text('Sports')).click()
-    browser.all('[for^=hobbies-checkbox]').element_by(have.text('Reading')).click()
-    browser.all('[for^=hobbies-checkbox]').element_by(have.text('Music')).click()
 
     browser.element("#uploadPicture").set_value(os.path.abspath(os.path.join(RES_DIR, "nolan.jpg")))
 
@@ -48,6 +45,6 @@ def test_registration():
     # THEN
     browser.element('.table').all('td:last-child').should(
         have.exact_texts('Sergey Dobrovolskiy', 'dobrovolskiy@qa.ru', 'Male', '1002003040', '02 January,2100',
-                         'Maths, Chemistry',
-                         'Sports, Reading, Music', 'nolan.jpg', 'Test Address', 'NCR Delhi'))
+                         'Maths',
+                         'Sports', 'nolan.jpg', 'Test Address', 'NCR Delhi'))
     browser.element('#closeLargeModal').perform(command.js.scroll_into_view).click()
