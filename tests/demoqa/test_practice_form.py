@@ -11,12 +11,13 @@ RES_DIR = os.path.join(CURRENT_DIR, os.path.pardir, "resources")
 
 def test_registration():
     browser.open('/automation-practice-form')
+    browser.driver.execute_script("$('footer').remove()")
+    browser.driver.execute_script("$('#fixedban').remove()")
 
     # WHEN
     browser.element('#firstName').should(be.blank).with_(type_by_js=True).type('Sergey')
     browser.element('#lastName').should(be.blank).with_(type_by_js=True).type('Dobrovolskiy')
     browser.element('#userEmail').should(be.blank).with_(type_by_js=True).type('dobrovolskiy@qa.ru')
-    # browser.element('[name=gender][value=Male]').with_(click_by_js=True).click()
     browser.all('[name=gender]').element_by(have.value('Male')).element('..').click()
     browser.element('#userNumber').should(be.blank).with_(type_by_js=True).type('1002003040')
 
@@ -26,7 +27,7 @@ def test_registration():
     browser.element(f'.react-datepicker__day--00{2}').click()
 
     browser.element('#subjectsContainer').click()
-    browser.element('#subjectsInput').with_(type_by_js=True).type('Maths').press_enter()
+    browser.element('#subjectsInput').type('Maths').press_enter()
 
     browser.all('[for^=hobbies-checkbox]').element_by(have.text('Sports')).click()
 
@@ -45,6 +46,5 @@ def test_registration():
     # THEN
     browser.element('.table').all('td:last-child').should(
         have.exact_texts('Sergey Dobrovolskiy', 'dobrovolskiy@qa.ru', 'Male', '1002003040', '02 January,2100',
-                         'Maths',
-                         'Sports', 'nolan.jpg', 'Test Address', 'NCR Delhi'))
+                         'Maths', 'Sports', 'nolan.jpg', 'Test Address', 'NCR Delhi'))
     browser.element('#closeLargeModal').perform(command.js.scroll_into_view).click()
